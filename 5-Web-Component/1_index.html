@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Web Component Example</h1>
+    <card-ticket></card-ticket>
+    <card-ticket color="blue" content="Ticket 1"></card-ticket>
+    <card-ticket color="green" content="Ticket 2"></card-ticket>
+    <card-ticket color="red" content="Ticket 3"></card-ticket>
+  </body>
+  <script>
+    class CardTicket extends HTMLElement {
+      static get observedAttributes() {
+        return ['color', 'content'];
+      }
+
+      constructor() {
+        super();
+        this.root = this.attachShadow({ mode: 'open' });
+        this.color = "black";
+        this.content = "No content";
+        this.isSelected = false;
+        this.addEventListener('click', () => this._selected());
+      }
+
+      _selected() {
+        this.isSelected = !this.isSelected;
+        this.connectedCallback();
+      }
+
+      attributeChangedCallback(name, oldValue, newValue) {
+        this[name] = newValue;
+      }
+
+      connectedCallback() {
+        this.root.innerHTML = this._getStyle() + this._getTemplate();;
+      }
+
+      _getStyle() {
+        return `<style>
+          :host {
+            display: inline-grid;
+            min-width: 8rem;
+            min-height: 8rem;
+            text-align: center;
+            margin: .5rem;
+            border: 1px solid #AAA;
+            cursor: pointer;
+            ${this.isSelected ? `box-shadow: 0px 0px .3rem .3rem rgba(100,100,100,0.25);` : ``}
+            border-radius: .3rem;
+          }
+          * { color: ${this.color} }
+          h1 { font-size: 1.2rem; text-transform: uppercase;}
+          p {font-size: .9rem; }
+        </style>`;
+      }
+      _getTemplate() {
+        return `
+        <h1>${this.color}</h1>
+        <p>${this.content}</p>`;
+      }
+    };
+    window.customElements.define('card-ticket', CardTicket);
+  </script>
+</html>

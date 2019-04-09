@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>HTML Custom Element example</h1>
+    <my-element color="blue"></my-element>
+  </body>
+  <script>
+    class MyElement extends HTMLElement {
+      static get observedAttributes() {
+        return ['color'];
+      }
+
+      attributeChangedCallback(name, oldValue, newValue) {
+        if (name === 'color') {
+          this.innerHTML = `<style>* {color: ${newValue}}</style>`;
+        }
+      }
+
+      connectedCallback() {
+        this.innerHTML += "<h3>This is content of the custom element.</h3>";
+      }
+    };
+    window.customElements.define('my-element', MyElement);
+  </script>
+</html>

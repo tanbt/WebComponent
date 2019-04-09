@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <body onload="prepare()">
+    <style>
+      h1 { color: green; font-size: 1.5rem }
+    </style>
+    <h1>Heading of the global web page</h1>
+    <div></div>
+  </body>
+  <script>
+    function prepare() {
+      var wrapper = document.querySelector('div');
+      var shadowRoot = wrapper.attachShadow({ mode: 'open'});
+      shadowRoot.innerHTML = `
+<style>
+  h1 { color: blue; font-size: 1rem }
+</style>
+<h1>Heading inside a Shadow DOM</h1>
+      `;
+    }
+  </script>
+</html>

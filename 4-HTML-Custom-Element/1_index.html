@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>HTML Custom Element example</h1>
+    <my-element></my-element>
+  </body>
+  <script>
+    class MyElement extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = "This is content of the custom element.";
+      }
+    };
+    window.customElements.define('my-element', MyElement);
+  </script>
+</html>
