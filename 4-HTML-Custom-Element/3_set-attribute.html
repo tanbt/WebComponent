@@ -3,13 +3,12 @@
   <body>
     <h1>HTML Custom Element example 2</h1>
     <my-element color="blue"></my-element>
-    <button onclick="changeColor()">Change color</button>
+    <button onclick="switchColor()">Switch color</button>
   </body>
   <script>
-    function changeColor() {
+    function switchColor() {
       var element = document.querySelector('my-element');
-      alert("Current color: " + element.color);
-      element.color = 'green';
+      element.color = element.color === 'green' ? 'blue' : 'green';
     }
 
     class MyElement extends HTMLElement {
@@ -26,12 +25,14 @@
 
       attributeChangedCallback(name, oldValue, newValue) {
         if (name === 'color') {
-          this.innerHTML = `<style>* {color: ${newValue}}</style>`;
+          this.innerHTML = `<style>* {color: ${newValue}}</style>${this._getExampleContent()}`;
         }
       }
 
-      connectedCallback() {
-        this.innerHTML += "<h3>This is content of the custom element.</h3>";
+      _getExampleContent() {
+        return `
+        <h3>This is content of the custom element.</h3>
+        <p>Current color: ${this.color}</p>`;
       }
     };
     window.customElements.define('my-element', MyElement);
