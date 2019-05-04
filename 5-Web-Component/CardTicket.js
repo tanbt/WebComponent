@@ -37,5 +37,5 @@ class CardTicket extends HTMLElement {
     <h1>${this.color}</h1><p>${this.content}</p>`;
   }
 };
-window.customElements.define('card-ticket', CardTicket);
 
+export {CardTicket};

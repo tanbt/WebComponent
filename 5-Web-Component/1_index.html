@@ -6,5 +6,8 @@
     <card-ticket color="blue" content="Ticket 1"></card-ticket>
     <card-ticket color="green" content="Ticket 2"></card-ticket>
   </body>
-  <script type="module" src="./CardTicket.js"></script>
+  <script type="module">
+    import { CardTicket } from './CardTicket.js';
+    window.customElements.define('card-ticket', CardTicket);
+  </script>
 </html>

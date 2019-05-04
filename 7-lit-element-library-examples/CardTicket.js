@@ -36,14 +36,4 @@ class CardTicket extends LitElement {
   <h1>${this.color}</h1><p>${this.content}</p>`;
   }
 }
-customElements.define('card-ticket', MyElement);
-
-import {LitElement, css} from 'lit-element';
-
-class MyElement extends LitElement {
-  render() {
-    return html`
-      <link rel="stylesheet" href="./styles.css">
-    `;
-  }
-}
+export {CardTicket};
