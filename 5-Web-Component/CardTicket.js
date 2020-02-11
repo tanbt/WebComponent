@@ -38,4 +38,4 @@ class CardTicket extends HTMLElement {
   }
 };
 
-export {CardTicket};
+window.customElements.define('card-ticket', CardTicket);

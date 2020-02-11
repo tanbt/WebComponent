@@ -2,12 +2,7 @@
 <html>
   <body>
     <h1>Web Component Example</h1>
-    <card-ticket></card-ticket>
-    <card-ticket color="blue" content="Ticket 1"></card-ticket>
-    <card-ticket color="green" content="Ticket 2"></card-ticket>
+    <my-app></my-app>
   </body>
-  <script type="module">
-    import { CardTicket } from './CardTicket.js';
-    window.customElements.define('card-ticket', CardTicket);
-  </script>
+  <script type="module"src='./my-app.js'></script>
 </html>
